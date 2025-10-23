@@ -1,0 +1,27 @@
+name: CI Python - Omar App
+
+on:
+  push:
+    branches:
+      - santillan  # Asegúrate de que esta rama existe
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt
+
+      - name: Ejecutar tests automáticos
+        run: |
+          python -m unittest discover -v
